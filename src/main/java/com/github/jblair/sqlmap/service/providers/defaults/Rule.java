@@ -3,7 +3,6 @@ package com.github.jblair.sqlmap.service.providers.defaults;
 import com.github.jblair.sqlmap.service.providers.IClassProvider;
 import com.github.jblair.sqlmap.service.providers.IRule;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 

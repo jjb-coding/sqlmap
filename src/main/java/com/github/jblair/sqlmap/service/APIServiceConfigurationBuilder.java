@@ -396,19 +396,18 @@ public class APIServiceConfigurationBuilder {
         if (append == null)
             append = "";
         append = format(append);
-        if (base == null || base == "")
+        if (base == null || base.isEmpty())
             return append;
         else
             return base + "." + append;
     }
 
-    private String format(String ns) {
-        String formattedNS = ns
+    private String format(String path) {
+        return path
                 .replace('/','.')
                 .replace('\\','.')
                 .replace(':','.')
                 .replaceAll("^\\.+|\\.+$", "");
-        return formattedNS;
     }
 
     // * Helpers

@@ -108,12 +108,9 @@ class InputConfiguration {
                         " (" +
                         ((n == 0) ? "" : String.join(", ", Collections.nCopies(n, "?")))
                         + ")}";
-        try {
-            buildCallableStatement();
-        }
-        catch (Exception e) {
-            throw new BuilderException("API:init:input[" + cls.getSimpleName() + "]: Couldn't build callable statement.");
-        }
+
+        // Build
+        buildCallableStatement();
     }
 
     // *** METHODS
@@ -123,47 +120,33 @@ class InputConfiguration {
      * @param object The input record object.
      * @return The output record object.
      */
-    @SuppressWarnings("SqlSourceToSinkFlow")
     public Object execute(APIInput<?> object) {
         // Validate configuration
         if (!_apiService.isConfigured())
             throw new ExecutionException("API:exec:input: Attempted to execute API request before service was configured.");
 
-        // Build & execute statement
-        CallableStatement statement = buildCallableStatement();
-        mapToCallableStatement(object, statement);
-        try {
+        // Execute
+        try (CallableStatement statement = _apiService.getConnection().prepareCall(statementString)) {
+            outputConfiguration.configureStatement(statement);
+            mapToCallableStatement(object, statement);
             statement.execute();
+
+            return outputConfiguration.execute(statement);
         } catch (SQLException e) {
             throw new DatabaseException("API:exec:input: Couldn't execute procedure.", e);
         }
-        return outputConfiguration.execute(statement);
     }
 
     // ** PRIVATE METHODS
     // * Callable Statements
-    private CallableStatement buildCallableStatement() {
-        // Get connection
-        Connection connection;
-        try {
-            connection = _apiService.getConnection();
-        } catch (SQLException e) {
-            throw new DatabaseException("API:exec:input: Couldn't retrieve a connection.", e);
+    private void buildCallableStatement() {
+        // Execute
+        try (CallableStatement statement = _apiService.getConnection().prepareCall(statementString)) {
+            outputConfiguration.configureStatement(statement);
         }
-
-        // Get a statement
-        CallableStatement statement;
-        try {
-            statement = connection.prepareCall(statementString);
-        } catch (SQLException e) {
-            throw new DatabaseException("API:exec:input: Failed to prepare the callable statement.", e);
+        catch (SQLException e) {
+            throw new DatabaseException("API:init:input: Couldn't build statement.", e);
         }
-
-        // Configure the statement
-        outputConfiguration.configureStatement(statement);
-
-        // Return
-        return statement;
     }
 
     private void mapToCallableStatement(Object object, CallableStatement statement) {
