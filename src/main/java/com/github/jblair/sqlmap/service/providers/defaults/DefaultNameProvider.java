@@ -68,6 +68,7 @@ public class DefaultNameProvider
      * @param prefix    The prefix
      * @return          Self-returning
      */
+    @SuppressWarnings("unused")
     public DefaultNameProvider setPrefix(String prefix) {
         this.prefix = prefix;
         return this;
@@ -78,6 +79,7 @@ public class DefaultNameProvider
      * @param sessionTrue    The text
      * @return              Self-returning
      */
+    @SuppressWarnings("unused")
     public DefaultNameProvider setSessionTrue(String sessionTrue) {
         this.sessionTrue = sessionTrue;
         return this;
@@ -88,6 +90,7 @@ public class DefaultNameProvider
      * @param sessionFalse    The text
      * @return              Self-returning
      */
+    @SuppressWarnings("unused")
     public DefaultNameProvider setSessionFalse(String sessionFalse) {
         this.sessionFalse = sessionFalse;
         return this;
@@ -98,6 +101,7 @@ public class DefaultNameProvider
      * @param infix     The infix
      * @return          Self-returning
      */
+    @SuppressWarnings("unused")
     public DefaultNameProvider setInfix(String infix) {
         this.infix = infix;
         return this;
@@ -108,6 +112,7 @@ public class DefaultNameProvider
      * @param postfix   The postfix
      * @return          Self-returning
      */
+    @SuppressWarnings("unused")
     public DefaultNameProvider setPostfix(String postfix) {
         this.postfix = postfix;
         return this;

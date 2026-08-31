@@ -19,7 +19,7 @@ public interface APIInput<T extends APIOutput> {
 		// Execute & cast
 		Object object = _apiService.execute(this);
 		
-		T ret = null;
+		T ret;
 		try {
 			ret = (T)object;
 		}

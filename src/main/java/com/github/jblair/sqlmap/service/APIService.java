@@ -81,6 +81,7 @@ public class APIService {
 	 * has been called.
 	 * @param configuration	The configuration object.
 	 */
+	@SuppressWarnings("unused")
 	public void build(APIServiceConfigurationBuilder configuration) {
 		// * Configuration
 		// Finalise
@@ -155,6 +156,7 @@ public class APIService {
 	 * @param fieldCls		The class
 	 * @param mapper		The mapper
 	 */
+	@SuppressWarnings("unused")
 	public void addInputMapper(Class<?> fieldCls, InputMapper mapper) {
 		if (configured)
 			throw new BuilderException("API:registry: APIService has already been configured and built.");
@@ -169,6 +171,7 @@ public class APIService {
 	 * @param fieldCls		The class
 	 * @param type			The SQL type constant
 	 */
+	@SuppressWarnings("unused")
 	public void addOutputConfigurer(Class<?> fieldCls, int type) {
 		if (configured)
 			throw new BuilderException("API:registry: APIService has already been configured and built.");
@@ -183,6 +186,7 @@ public class APIService {
 	 * @param fieldCls		The class
 	 * @param mapper		The mapper
 	 */
+	@SuppressWarnings("unused")
 	public void addOutputMapper(Class<?> fieldCls, OutputMapper mapper) {
 		if (configured)
 			throw new BuilderException("API:registry: APIService has already been configured and built.");
@@ -197,6 +201,7 @@ public class APIService {
 	 * @param fieldCls		The class
 	 * @param mapper		The mapper
 	 */
+	@SuppressWarnings("unused")
 	public void addOutputResultsMapper(Class<?> fieldCls, OutputResultsMapper mapper) {
 		if (configured)
 			throw new BuilderException("API:registry: APIService has already been configured and built.");
@@ -261,7 +266,8 @@ public class APIService {
 		return sessionProvider.getNumberOfStrings();
 	}
 
-	Connection getConnection() {
+	Connection getConnection()
+		throws SQLException {
 		return connectionProvider.getConnection();
 	}
 
@@ -326,7 +332,7 @@ public class APIService {
 				Integer.class,
 				Types.INTEGER);
 		classToOutputConfigurer.put(
-				Integer.class,
+				Long.class,
 				Types.BIGINT);
 		classToOutputConfigurer.put(
 				String.class, 
@@ -341,7 +347,8 @@ public class APIService {
 				Date.class,
 				Types.DATE);
 	}
-	
+
+	@SuppressWarnings("RedundantCast")
 	private void constructOutputMapperRegistry() {
 		// Construct map
 		classToOutputMapper = new HashMap<>();
@@ -384,7 +391,8 @@ public class APIService {
 			}
 		});
 	}
-	
+
+	@SuppressWarnings("RedundantCast")
 	private void constructOutputResultsMapperRegistry() {
 		// Construct map
 		classToOutputResultsMapper = new HashMap<>();
@@ -394,55 +402,55 @@ public class APIService {
 			@Override
 			public Object invoke(String name, ResultSet resultSet) throws SQLException {
 				return (Object)resultSet.getInt(name);
-			};
+			}
 		});
 		classToOutputResultsMapper.put(Long.class, new OutputResultsMapper() {
 			@Override
 			public Object invoke(String name, ResultSet resultSet) throws SQLException {
 				return (Object)resultSet.getLong(name);
-			};
+			}
 		});
 		classToOutputResultsMapper.put(String.class, new OutputResultsMapper() {
 			@Override
 			public Object invoke(String name, ResultSet resultSet) throws SQLException {
 				return (Object)resultSet.getString(name);
-			};
+			}
 		});
 		classToOutputResultsMapper.put(byte[].class, new OutputResultsMapper() {
 			@Override
 			public Object invoke(String name, ResultSet resultSet) throws SQLException {
 				return (Object)resultSet.getBytes(name);
-			};
+			}
 		});
 		classToOutputResultsMapper.put(Timestamp.class, new OutputResultsMapper() {
 			@Override
 			public Object invoke(String name, ResultSet resultSet) throws SQLException {
 				return (Object)resultSet.getTimestamp(name);
-			};
+			}
 		});
 		classToOutputResultsMapper.put(Date.class, new OutputResultsMapper() {
 			@Override
 			public Object invoke(String name, ResultSet resultSet) throws SQLException {
 				return (Object)resultSet.getDate(name);
-			};
+			}
 		});
 		classToOutputResultsMapper.put(Time.class, new OutputResultsMapper() {
 			@Override
 			public Object invoke(String name, ResultSet resultSet) throws SQLException {
 				return (Object)resultSet.getTime(name);
-			};
+			}
 		});
 		classToOutputResultsMapper.put(long.class, new OutputResultsMapper() {
 			@Override
 			public Object invoke(String name, ResultSet resultSet) throws SQLException {
 				return (Object)resultSet.getLong(name);
-			};
+			}
 		});
 		classToOutputResultsMapper.put(Boolean.class, new OutputResultsMapper() {
 			@Override
 			public Object invoke(String name, ResultSet resultSet) throws SQLException {
 				return (Object)resultSet.getBoolean(name);
-			};
+			}
 		});
 	}
 }

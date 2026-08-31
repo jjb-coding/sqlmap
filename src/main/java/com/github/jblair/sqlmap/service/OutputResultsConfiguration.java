@@ -30,7 +30,11 @@ class OutputResultsConfiguration {
      *
      * @param cls The record to scan.
      */
+    @SuppressWarnings("RedundantCast")
     public OutputResultsConfiguration(APIService _apiService, Class<?> cls) {
+        // Register outputResult
+        _apiService.discoverOutputResults(cls);
+
         // VALIDATE: is it a record?
         if (!cls.isRecord())
             throw new RuntimeException("API:init:outputResults[" + cls.getSimpleName() + "]: Is not a record class.");
@@ -50,7 +54,11 @@ class OutputResultsConfiguration {
             // Put into array
             names[i] = fieldName;
             // VALIDATE: is mapper recognised?
-            mappers[i] = _apiService.classToOutputResultsMapper.get(fieldCls);
+            if (fieldCls.isEnum())
+                mappers[i] = _apiService.getOrCreateOutputResultsMapperEnum(fieldCls);
+            else
+                mappers[i] = _apiService.classToOutputResultsMapper.get(fieldCls);
+
             if (mappers[i] == null)
                 throw new RuntimeException("API:init:outputResults[" + cls.getSimpleName() + "]: " + fieldName + ": Field is of unsupported type " + fieldCls.getSimpleName() + ".");
         }

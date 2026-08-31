@@ -59,7 +59,10 @@ public class Rule
                     return false;
         }
         if (type == Type.CoverProvider || type == Type.EqualProvider) {
-            HashSet<Class<?>> discoveredSet = new HashSet<>((Collection)discoveredClasses);
+            HashSet<Class<?>> discoveredSet = new HashSet<>();
+            for (Class<?> cls : discoveredClasses)
+                discoveredSet.add(cls);
+
             for (Class<?> containerClass : containerClasses)
                 if (!discoveredSet.contains(containerClass))
                     return false;

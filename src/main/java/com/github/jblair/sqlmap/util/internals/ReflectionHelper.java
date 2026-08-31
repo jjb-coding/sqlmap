@@ -30,13 +30,15 @@ public class ReflectionHelper {
             File directory = new File(resource.getFile());
             if (directory.exists()) {
                 File[] files = directory.listFiles();
-                for (File file : files) {
-                    if (file == null)
-                        continue;
-                    if (file.isFile() && file.getName().endsWith(".class")) {
-                        String className = packageName + '.' + 
-                            file.getName().substring(0, file.getName().length() - 6);
-                        classes.add(Class.forName(className));
+                if (files != null) {
+                    for (File file : files) {
+                        if (file == null)
+                            continue;
+                        if (file.isFile() && file.getName().endsWith(".class")) {
+                            String className = packageName + '.' +
+                                    file.getName().substring(0, file.getName().length() - 6);
+                            classes.add(Class.forName(className));
+                        }
                     }
                 }
             }
@@ -52,6 +54,7 @@ public class ReflectionHelper {
      * @throws IOException              On filesystem error
      * @throws ClassNotFoundException   On reflection error
      */
+    @SuppressWarnings("unused")
     public static ArrayList<Class<?>> getNamedClasses(String packageName) throws ClassNotFoundException, IOException {
     	ArrayList<Class<?>> in = getClasses(packageName);
     	ArrayList<Class<?>> out = new ArrayList<>();

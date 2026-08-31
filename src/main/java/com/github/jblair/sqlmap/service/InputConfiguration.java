@@ -108,7 +108,12 @@ class InputConfiguration {
                         " (" +
                         ((n == 0) ? "" : String.join(", ", Collections.nCopies(n, "?")))
                         + ")}";
-        buildCallableStatement();
+        try {
+            buildCallableStatement();
+        }
+        catch (Exception e) {
+            throw new BuilderException("API:init:input[" + cls.getSimpleName() + "]: Couldn't build callable statement.");
+        }
     }
 
     // *** METHODS
@@ -118,13 +123,11 @@ class InputConfiguration {
      * @param object The input record object.
      * @return The output record object.
      */
+    @SuppressWarnings("SqlSourceToSinkFlow")
     public Object execute(APIInput<?> object) {
         // Validate configuration
         if (!_apiService.isConfigured())
             throw new ExecutionException("API:exec:input: Attempted to execute API request before service was configured.");
-
-        // Get connection
-        Connection connection = _apiService.getConnection();
 
         // Build & execute statement
         CallableStatement statement = buildCallableStatement();
@@ -141,7 +144,12 @@ class InputConfiguration {
     // * Callable Statements
     private CallableStatement buildCallableStatement() {
         // Get connection
-        Connection connection = _apiService.getConnection();
+        Connection connection;
+        try {
+            connection = _apiService.getConnection();
+        } catch (SQLException e) {
+            throw new DatabaseException("API:exec:input: Couldn't retrieve a connection.", e);
+        }
 
         // Get a statement
         CallableStatement statement;

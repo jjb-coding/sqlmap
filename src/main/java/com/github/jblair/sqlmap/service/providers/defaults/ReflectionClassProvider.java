@@ -19,7 +19,7 @@ public class ReflectionClassProvider
 
     // *** CONSTRUCTORS
     public ReflectionClassProvider(String packageString) {
-        if (packageString.equals(""))
+        if (packageString.isEmpty())
             throw new BuilderException("API:init:configuration: Package string was be empty.");
         this.inputPackage = packageString;
     }

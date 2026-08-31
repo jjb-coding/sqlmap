@@ -1,6 +1,7 @@
 package com.github.jblair.sqlmap.service.providers;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  * Interface for connection providers.
@@ -12,5 +13,6 @@ public interface IConnectionProvider {
      * Gets a Connection object.
      * @return  The Connection object
      */
-    Connection getConnection();
+    Connection getConnection()
+        throws SQLException;
 }

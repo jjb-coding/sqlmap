@@ -18,6 +18,7 @@ public class OutputResultsMapperEnum
     }
 
     @Override
+    @SuppressWarnings("RedundantCast")
     public Object invoke(String name, ResultSet resultSet) throws SQLException {
         return (Object)resultSet.getString(name);
     }

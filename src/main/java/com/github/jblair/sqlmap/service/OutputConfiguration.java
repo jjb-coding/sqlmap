@@ -40,6 +40,7 @@ class OutputConfiguration {
      *
      * @param cls The record to scan.
      */
+    @SuppressWarnings("RedundantCast")
     public OutputConfiguration(APIService _apiService, Class<?> cls, int offset) {
         // Register output
         _apiService.discoverOutput(cls);
@@ -80,11 +81,10 @@ class OutputConfiguration {
 
                 // VALIDATE: must be a class type
                 Type parameterType = parameters[0];
-                if (!(parameterType instanceof Class<?>))
+                if (!(parameterType instanceof Class<?> parameter))
                     throw new BuilderException("API:init:output[" + cls.getSimpleName() + "]: " + fieldName + ": ResultSet List is parametrised by a type that is not a class.");
 
                 // VALIDATE:
-                Class<?> parameter = (Class<?>) parameterType;
                 if (!(parameter.isRecord()))
                     throw new BuilderException("API:init:output[" + cls.getSimpleName() + "]: " + fieldName + ": ResultSet List is parametrised by a type that is not a record.");
 
@@ -95,7 +95,14 @@ class OutputConfiguration {
                 size++;
 
                 // VALIDATE: is mapper recognised?
-                OutputMapper mapper = _apiService.classToOutputMapper.get(fieldCls);
+                boolean isEnum = fieldCls.isEnum();
+
+                OutputMapper mapper;
+                if (isEnum)
+                    mapper = _apiService.getOrCreateOutputMapperEnum(fieldCls);
+                else
+                    mapper = _apiService.classToOutputMapper.get(fieldCls);
+
                 if (mapper == null)
                     throw new BuilderException("API:init:output[" + cls.getSimpleName() + "]: " + fieldName + ": Mapper: Field is of unsupported type " + fieldCls.getSimpleName() + ".");
 
@@ -103,7 +110,12 @@ class OutputConfiguration {
                 mappersList.add(mapper);
 
                 // VALIDATE: is configurer recognised?
-                Integer configurer = _apiService.classToOutputConfigurer.get(fieldCls);
+                Integer configurer;
+                if (isEnum)
+                    configurer = _apiService.classToOutputConfigurer.get(String.class);
+                else
+                    configurer = _apiService.classToOutputConfigurer.get(fieldCls);
+
                 if (configurer == null)
                     throw new BuilderException("API:init:output[" + cls.getSimpleName() + "]: " + fieldName + ": Configurer: Field is of unsupported type " + fieldCls.getSimpleName() + ".");
 
