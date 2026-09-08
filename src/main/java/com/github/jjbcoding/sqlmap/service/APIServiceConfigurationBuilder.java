@@ -5,7 +5,6 @@ import com.github.jjbcoding.sqlmap.service.adapters.InputMapper;
 import com.github.jjbcoding.sqlmap.service.adapters.OutputMapper;
 import com.github.jjbcoding.sqlmap.service.adapters.OutputResultsMapper;
 import com.github.jjbcoding.sqlmap.service.providers.*;
-import com.github.jjbcoding.sqlmap.service.providers.*;
 import com.github.jjbcoding.sqlmap.service.providers.defaults.DefaultNameProvider;
 import com.github.jjbcoding.sqlmap.service.providers.defaults.ListClassProvider;
 import com.github.jjbcoding.sqlmap.service.providers.defaults.ReflectionClassProvider;

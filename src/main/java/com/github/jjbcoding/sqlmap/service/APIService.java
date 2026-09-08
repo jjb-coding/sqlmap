@@ -7,8 +7,6 @@ import java.util.*;
 import com.github.jjbcoding.sqlmap.api.interfaces.APIInput;
 import com.github.jjbcoding.sqlmap.exceptions.BuilderException;
 import com.github.jjbcoding.sqlmap.exceptions.ExecutionException;
-import com.github.jjbcoding.sqlmap.service.adapters.*;
-import com.github.jjbcoding.sqlmap.service.adapters.enums.*;
 import com.github.jjbcoding.sqlmap.service.providers.*;
 import com.github.jjbcoding.sqlmap.service.adapters.InputMapper;
 import com.github.jjbcoding.sqlmap.service.adapters.OutputMapper;
@@ -16,7 +14,6 @@ import com.github.jjbcoding.sqlmap.service.adapters.OutputResultsMapper;
 import com.github.jjbcoding.sqlmap.service.adapters.enums.InputMapperEnum;
 import com.github.jjbcoding.sqlmap.service.adapters.enums.OutputMapperEnum;
 import com.github.jjbcoding.sqlmap.service.adapters.enums.OutputResultsMapperEnum;
-import com.github.jjbcoding.sqlmap.service.providers.*;
 
 import java.sql.ResultSet;
 
