@@ -3,6 +3,7 @@
  */
 module com.github.jjbcoding.sqlmap {
     requires java.sql;
+
     exports com.github.jjbcoding.sqlmap.api.annotations;
     exports com.github.jjbcoding.sqlmap.api.interfaces;
     exports com.github.jjbcoding.sqlmap.exceptions;
