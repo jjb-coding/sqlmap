@@ -27,7 +27,6 @@ jobs:
           cache: maven
 
       - name: Generate Javadoc
-        working-directory: /
         run: |
           mkdir -p target/reports/apidocs
           javadoc \
