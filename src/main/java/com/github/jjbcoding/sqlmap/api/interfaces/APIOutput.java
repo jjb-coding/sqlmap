@@ -2,7 +2,7 @@ package com.github.jjbcoding.sqlmap.api.interfaces;
 
 /**
  * Classifies the return parameters of an API call. Must be implemented by all records to be scanned
- * in the configured output package. The parameters can include ArrayList<T extends OutputResult>
+ * in the configured output package. The parameters can include ArrayList&lt;T extends OutputResult&gt;
  * fields for one or more result sets.
  */
 public interface APIOutput {}
