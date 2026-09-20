@@ -9,7 +9,6 @@ import java.util.Map;
  */
 public class MapHelper {
     // ----- STATIC
-
     /**
      * Combines two maps.
      * @param target            The target map

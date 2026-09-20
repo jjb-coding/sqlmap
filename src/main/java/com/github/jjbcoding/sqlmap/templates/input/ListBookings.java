@@ -5,6 +5,11 @@ import com.github.jjbcoding.sqlmap.api.annotations.ExpectsSession;
 import com.github.jjbcoding.sqlmap.api.annotations.Output;
 import com.github.jjbcoding.sqlmap.templates.output.ListBookingsOutput;
 
+/**
+ * Lists bookings.
+ * @param month	The month
+ * @param year	The year
+ */
 @SuppressWarnings("unused")
 @Output(ListBookingsOutput.class)
 @ExpectsSession

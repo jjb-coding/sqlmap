@@ -37,7 +37,6 @@ class OutputConfiguration {
     // *** CONSTRUCTORS
     /**
      * Scans an output record and builds a configuration object around it.
-     *
      * @param cls The record to scan.
      */
     @SuppressWarnings("RedundantCast")
@@ -141,7 +140,6 @@ class OutputConfiguration {
     // ** PUBLIC
     /**
      * Executes this configuration.
-     *
      * @param statement The executed statement.
      * @return An output record, with associated lists of output results records if appropriate.
      */
@@ -173,7 +171,6 @@ class OutputConfiguration {
     // ** PACKAGE-PRIVATE
     /**
      * Configures a statement according to its output elements.
-     *
      * @param statement The statement.
      */
     void configureStatement(CallableStatement statement) {

@@ -55,6 +55,9 @@ public class RuleAny
 
     // *** INTERFACE IMPLEMENTATIONS
     // * [ IValidationProvider ]
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isValid(Iterable<Class<?>> discoveredClasses) {
         for (Rule rule : rules)

@@ -27,7 +27,6 @@ class OutputResultsConfiguration {
     // *** CONSTRUCTORS
     /**
      * Scans an output results record and builds a configuration object around it.
-     *
      * @param cls The record to scan.
      */
     @SuppressWarnings("RedundantCast")
@@ -76,7 +75,6 @@ class OutputResultsConfiguration {
     // ** PUBLIC
     /**
      * Executes this configuration.
-     *
      * @param statement The executed statement.
      * @return An array list of output result records, one for each row.
      */

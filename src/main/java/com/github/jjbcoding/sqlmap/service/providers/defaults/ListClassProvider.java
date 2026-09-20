@@ -52,6 +52,9 @@ public class ListClassProvider
 
     // *** INTERFACE IMPLEMENTATIONS
     // * [ IClassProvider ]
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Class<?>> getClasses() {
         return classes;

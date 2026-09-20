@@ -20,8 +20,9 @@ import java.sql.ResultSet;
 import static com.github.jjbcoding.sqlmap.util.internals.MapHelper.combineMaps;
 
 /**
- * Facilitates API calls.
- * Does not need to be accessed directly outside the API package.
+ * An API service instance maintains mapper and configurer registries and scanned
+ * API endpoints. Its purpose is to facilitate API calls. It does not need to be
+ * accessed directly.
  */
 public class APIService {
 	// ----- DYNAMIC
@@ -50,8 +51,8 @@ public class APIService {
 
 	// *** CONSTRUCTORS
 	/**
-	 * An API service instance contains read-only mapper registries, and a
-	 * registry of scanned API endpoints.
+	 * Constructs an APIService instance. Will throw an exception if {@link APIInput#execute()}
+	 * is invoked, but the service has not yet been configured.
 	 */
 	public APIService() {
 		// ** Initialise
@@ -86,7 +87,7 @@ public class APIService {
 	 * @param configuration	The configuration object.
 	 */
 	@SuppressWarnings("unused")
-	public void build(APIServiceConfigurationBuilder configuration) {
+	public void configure(APIServiceConfigurationBuilder configuration) {
 		// * Configuration
 		// Finalise
 		configuration.finalise();

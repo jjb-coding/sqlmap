@@ -45,6 +45,9 @@ public class Rule
 
     // *** INTERFACE IMPLEMENTATIONS
     // * [ IValidationProvider ]
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isValid(Iterable<Class<?>> discoveredClasses) {
         // Get

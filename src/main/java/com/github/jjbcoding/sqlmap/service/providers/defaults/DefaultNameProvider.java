@@ -120,6 +120,9 @@ public class DefaultNameProvider
 
     // *** INTERFACE IMPLEMENTATION
     // * [ INameProvider ]
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getName(String recordName, boolean session) {
         return (format == Arrangement.SessionThenName)

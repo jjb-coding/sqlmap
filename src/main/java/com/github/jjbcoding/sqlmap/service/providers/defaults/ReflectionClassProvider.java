@@ -25,6 +25,9 @@ public class ReflectionClassProvider
     }
 
     // *** METHODS
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Class<?>> getClasses() {
         if (inputs == null) {

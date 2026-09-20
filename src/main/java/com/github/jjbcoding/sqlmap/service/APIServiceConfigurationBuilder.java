@@ -18,11 +18,15 @@ import java.util.Map;
  * Used to configure an APIService instance. An APIService will
  * not be usable until a configuration object has been passed to
  * its build() method.
- * Registers custom mappers & configurers, and creates and configures
+ * Registers custom mappers and configurers, and creates and configures
  * providers and validation rules.
  */
 public class APIServiceConfigurationBuilder {
     // ----- NESTED
+    /**
+     * Whether a rule is bound to validate discovered Output or OutputResults
+     * records, or a merged collection of both.
+     */
     public enum Domain {
         Output,
         OutputResults,

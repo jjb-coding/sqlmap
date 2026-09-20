@@ -1,3 +1,6 @@
+/**
+ * The SqlMap module.
+ */
 module com.github.jjbcoding.sqlmap {
     requires java.sql;
     exports com.github.jjbcoding.sqlmap.api.annotations;
