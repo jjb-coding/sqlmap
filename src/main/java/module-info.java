@@ -1,4 +1,4 @@
-module com.github.jblair.sqlMapper {
+module com.github.jjbcoding.sqlmap {
     requires java.sql;
     exports com.github.jjbcoding.sqlmap.api.annotations;
     exports com.github.jjbcoding.sqlmap.api.interfaces;
